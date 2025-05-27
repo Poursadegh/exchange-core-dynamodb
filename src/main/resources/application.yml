@@ -1,0 +1,42 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: exchange-core
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operationsSorter: method
+
+logging:
+  level:
+    root: INFO
+    exchange.core2: DEBUG
+    org.springframework.cloud.gateway: INFO
+    org.springframework.web: INFO
+
+caffeine:
+  cache:
+    orders:
+      expire-after-write: 10m
+      maximum-size: 10000
+    users:
+      expire-after-write: 30m
+      maximum-size: 5000
+
+aws:
+  dynamodb:
+    region: us-east-1
+    endpoint: ${DYNAMODB_ENDPOINT:}
+    enabled: true
+    create-tables-if-not-exist: true 

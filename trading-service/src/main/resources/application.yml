@@ -1,0 +1,50 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: trading-service
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operationsSorter: method
+
+logging:
+  level:
+    root: INFO
+    exchange.core2: DEBUG
+    org.springframework.web: INFO
+
+exchange:
+  core:
+    symbols:
+      - id: 1
+        name: BTC/USD
+        baseCurrency: BTC
+        quoteCurrency: USD
+        baseScale: 8
+        quoteScale: 2
+        takerFee: 0.002
+        makerFee: 0.001
+      - id: 2
+        name: ETH/USD
+        baseCurrency: ETH
+        quoteCurrency: USD
+        baseScale: 8
+        quoteScale: 2
+        takerFee: 0.002
+        makerFee: 0.001
+
+redis:
+  cache:
+    order-book:
+      ttl: 1m
+    trades:
+      ttl: 5m 
